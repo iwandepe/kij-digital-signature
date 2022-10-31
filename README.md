@@ -2,7 +2,7 @@
 
 This codebase will give digital signature to a pdf file and validating the signature
 
-## Group Members:
+## Group Members
 
 1. 05111940000023 - Mohammad Faderik Izzul Haq
 2. 05111940000053 - Allam Taju Sarof
@@ -11,7 +11,7 @@ This codebase will give digital signature to a pdf file and validating the signa
 
 ## TODO
 
-- Generate user's private and public key
+- Generate user's private and public key ✔️
 - App to sign PDF document digitally ✔️
 - App to verify the signature ✔️
 - Embed the signature in the PDF file
