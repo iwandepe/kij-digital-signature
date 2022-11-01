@@ -16,3 +16,6 @@ This codebase will give digital signature to a pdf file and validating the signa
 - App to verify the signature ✔️
 - Embed the signature in the PDF file
 - Refactor code to modular
+
+# Docs
+
