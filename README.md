@@ -19,3 +19,20 @@ This codebase will give digital signature to a pdf file and validating the signa
 
 # Docs
 
+testing.py
+testing-validate.py
+
+- generate a pair of key
+- create signature
+- create certif
+- embed certif
+- extract certif
+- signature validation
+
+generatekey.py
+sign.py
+validate.py
+
+- generate a pair of key
+- create signature
+- signature validation

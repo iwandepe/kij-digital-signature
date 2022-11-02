@@ -6,9 +6,6 @@ import argparse
 from PDFNetPython3.PDFNetPython import *
 from typing import Tuple
 
-RELATIVE_PATH = 'C:/developing/project/project-python/kij/kij-digital-signature/' # '/home/allam/dev-project/kij-digital-signature/' # '/content/drive/MyDrive/kij/' # sesuaikan sendiri
-KEY_PDFNET = 'demo:1667292716681:7aafb59103000000002f917f8e864d0a37fac83bab71640b9b9b4baec1'
-
 #===== start:CONFIG_FIELD =====
 RELATIVE_PATH = 'C:/developing/project/project-python/kij/kij-digital-signature/' # '/home/allam/dev-project/kij-digital-signature/' # '/content/drive/MyDrive/kij/' # sesuaikan sendiri
 KEY_PDFNET = 'demo:1667292716681:7aafb59103000000002f917f8e864d0a37fac83bab71640b9b9b4baec1'
@@ -86,7 +83,7 @@ def load():
     # Generating the public key...
     with open(RELATIVE_PATH + 'static/public_key.pem', 'wb') as pub_key:
         pub_key_str = OpenSSL.crypto.dump_publickey(
-            OpenSSL.crypto.FILETYPE_PEM, cert.get_pubkey())
+            OpenSSL.crypto.FILETYPE_PEM, key)
         #print("Public key = ",pub_key_str)
         pub_key.write(pub_key_str)
         summary['Public Key'] = pub_key_str
