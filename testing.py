@@ -6,8 +6,27 @@ import argparse
 from PDFNetPython3.PDFNetPython import *
 from typing import Tuple
 
-RELATIVE_PATH = '/home/allam/dev-project/kij-digital-signature/' # '/content/drive/MyDrive/kij/' # sesuaikan sendiri
+RELATIVE_PATH = 'C:/developing/project/project-python/kij/kij-digital-signature/' # '/home/allam/dev-project/kij-digital-signature/' # '/content/drive/MyDrive/kij/' # sesuaikan sendiri
 KEY_PDFNET = 'demo:1667292716681:7aafb59103000000002f917f8e864d0a37fac83bab71640b9b9b4baec1'
+
+#===== start:CONFIG_FIELD =====
+RELATIVE_PATH = 'C:/developing/project/project-python/kij/kij-digital-signature/' # '/home/allam/dev-project/kij-digital-signature/' # '/content/drive/MyDrive/kij/' # sesuaikan sendiri
+KEY_PDFNET = 'demo:1667292716681:7aafb59103000000002f917f8e864d0a37fac83bab71640b9b9b4baec1'
+
+ISSUER_NAME = "ALLAM TAJU SAROF"
+ISSUER_COUNTRY = "id"
+ISSUER_PROVINCE = "Jawa Timur"
+ISSUER_CITY = "Surabaya"
+ISSUER_EMAIL = "allamtaju4@gmail.com"
+ISSUER_ORGANIZATION = "KIJ"
+ISSUER_ORGANIZATION_UNIT = "KIJ Digital Signature"
+
+CERTIFICATE_PASSWORD = 'password'
+SIGN_ID = 'ATS'
+SIGN_COORDINATE_X = 500 # 0 start from left
+SIGN_COORDINATE_Y = 50 # 0 start from bottom
+#===== end:CONFIG_FIELD =====
+
 
 def createKeyPair(type, bits):
     """
@@ -25,7 +44,13 @@ def create_self_signed_cert(pKey):
     # Create a self signed certificate
     cert = OpenSSL.crypto.X509()
     # Common Name (e.g. server FQDN or Your Name)
-    cert.get_subject().CN = "ALLAM TAJU SAROF"
+    cert.get_subject().commonName  = ISSUER_NAME
+    cert.get_subject().countryName = ISSUER_COUNTRY
+    cert.get_subject().stateOrProvinceName = ISSUER_PROVINCE
+    cert.get_subject().localityName = ISSUER_CITY
+    cert.get_subject().emailAddress = ISSUER_EMAIL
+    cert.get_subject().organizationName = ISSUER_ORGANIZATION
+    cert.get_subject().organizationalUnitName = ISSUER_ORGANIZATION_UNIT
     # Serial Number
     cert.set_serial_number(int(time.time() * 10))
     # Not Before
@@ -71,7 +96,7 @@ def load():
     p12 = OpenSSL.crypto.PKCS12()
     p12.set_privatekey(key)
     p12.set_certificate(cert)
-    open(RELATIVE_PATH + 'static/container.pfx', 'wb').write(p12.export())
+    open(RELATIVE_PATH + 'static/container.pfx', 'wb').write(p12.export( passphrase = CERTIFICATE_PASSWORD ))
     # You may convert a PKSC12 file (.pfx) to a PEM format
     # Done - Generating a container file of the private key and the certificate...
     # To Display A Summary
@@ -115,7 +140,7 @@ def sign_file(input_file: str, signatureID: str, x_coordinate: int,
         approval_field.GetSDFObj())
     found_approval_signature_widget.CreateSignatureAppearance(img)
     # Prepare the signature and signature handler for signing.
-    approval_signature_digsig_field.SignOnNextSave(pk_filename, '')
+    approval_signature_digsig_field.SignOnNextSave(pk_filename, CERTIFICATE_PASSWORD)
     # The signing will be done during the following incremental save operation.
     doc.Save(output_file, SDFDoc.e_incremental)
     # Develop a Process Summary
@@ -223,11 +248,11 @@ main_driver(args)
 
 args = {
     'load': False, 
-    'input_path': RELATIVE_PATH + "static/file.pdf",
-    'signatureID': 'ATS', 
+    'input_path': RELATIVE_PATH + "static/testing-validate/file.pdf",
+    'signatureID': SIGN_ID, 
     'pages': None, 
-    'x_coordinate': 500, 
-    'y_coordinate': 50, 
+    'x_coordinate': SIGN_COORDINATE_X, 
+    'y_coordinate': SIGN_COORDINATE_Y, 
     'output_file': None
 }
 
