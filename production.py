@@ -20,7 +20,7 @@ from typing import Tuple
 from shutil import copyfile
 
 #===== start:CONFIG_FIELD =====
-RELATIVE_PATH = 'C:/developing/project/project-python/kij/kij-digital-signature/' # '/home/allam/dev-project/kij-digital-signature/' # '/content/drive/MyDrive/kij/' # sesuaikan sendiri
+RELATIVE_PATH = '' # '/home/allam/dev-project/kij-digital-signature/' # '/content/drive/MyDrive/kij/' # sesuaikan sendiri
 INPUT_PATH = 'in/' # WARNING!!! yang boleh akses input path adalah fungsi copyInputFiles() lainnya gunakan OUTPUT_PATH
 OUTPUT_PATH = 'out/'
 KEY_PDFNET = 'demo:1667292716681:7aafb59103000000002f917f8e864d0a37fac83bab71640b9b9b4baec1'

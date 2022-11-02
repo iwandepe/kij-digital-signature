@@ -36,3 +36,8 @@ validate.py
 - generate a pair of key
 - create signature
 - signature validation
+
+# LIB Instalation
+
+- pip install PDFNetPython3
+- pip install pyOpenSSL
